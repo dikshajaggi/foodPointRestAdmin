@@ -1,0 +1,67 @@
+# apis ->
+
+auth
+    -> login/signup/logout
+
+restaurant
+    -> create restaurant (form)
+
+menu
+    -> edit restaurant menu (form)
+    -> add new item (menu)
+    -> delete item (menu)
+
+sales
+    -> todays
+    -> weekly
+    -> monthly
+    -> yearly
+
+order_status
+    -> all orders recieved
+    -> confirmed 
+    -> cancelled
+    -> preparing
+    -> out for delivery
+    -> delivered
+
+offers 
+    -> all offers
+    -> new offers
+    -> delete offers
+    -> update offers 
+    -> expired offers
+
+delivery_guy
+    -> details
+
+
+
+frontend -> apollo client, react, tailwind css
+backend -> express, node, passport.js, passport(core), graphql-passport (nomal passport.js is for rest apis, pain to modify for graphql so using this), 
+graphql-tools/merge (for merging varoius typedefs and resolvers), apollo-express-middleware, express-session (to store sessions in our app),
+connect-mongodb-session (to store sessions in mongodb)
+
+database -> mongodb (atlas -> to use database in cloud)
+
+extensions -> graphql language support and syntax highlighting
+
+
+1. create the typedefs and resolvers, then merge them
+2. create the index.js file and set up both http and apollo server
+3. create db file and initialize mongoose db
+4. after this create db models
+
+
+# while login/sign a http-only cookie will be generated, it is safe as nobody can access it through js
+# http-only prevent xss attacks cross-site-scripting attacks
+
+xss-> if someone injects some script in our website and steal cookie, data etc.
+-> scripts can be injected through forms/ url etc.
+-> vulnerabilities ---> 
+        user-session-hijacking (hijacking cookies)
+        unauthorzised-activities
+        capturing-key-strokes
+        capture-entire-webpage
+        phishing-attack (adding a form under the hood inside our webpage and get it filled by us)
+

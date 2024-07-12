@@ -1,0 +1,64 @@
+===============Why an HTTP Server is Needed with GraphQL=========
+GraphQL operates over HTTP, just like REST APIs. Here's why an HTTP server is still necessary:
+
+Transport Protocol:
+
+GraphQL needs a transport protocol to send and receive data. HTTP is the most common protocol for this purpose. The HTTP server listens for incoming HTTP requests and routes them appropriately.
+Handling Requests:
+
+The HTTP server handles all incoming network requests. When a request comes in at the /graphql endpoint, the server forwards it to the GraphQL engine for processing.
+This server also handles other middleware tasks such as CORS, authentication, logging, etc.
+Middleware Integration:
+
+Middleware such as body parsers, authentication handlers, and CORS handlers are typically integrated with the HTTP server. This allows the server to process these aspects before the request is handled by GraphQL.
+Routing:
+
+While GraphQL typically operates on a single endpoint (like /graphql), there may be other routes in your application that need handling, such as static file serving, health checks, or additional APIs.
+Example Workflow
+Here's a simplified workflow to illustrate how an HTTP server works with GraphQL:
+
+Incoming Request:
+
+A client sends a POST request to the /graphql endpoint with a GraphQL query or mutation in the request body.
+HTTP Server Receives the Request:
+
+The HTTP server (like Express) receives this request.
+The server applies middleware (e.g., body parsing, authentication) to process the request appropriately.
+Forwarding to GraphQL:
+
+After processing the middleware, the HTTP server forwards the request to the GraphQL server for execution.
+GraphQL Server Execution:
+
+The GraphQL server (Apollo Server) parses the query, executes the resolvers, and generates a response.
+Returning the Response:
+
+The response is sent back to the HTTP server, which then sends it back to the client over HTTP.
+
+
+
+When a request is made to the /graphql endpoint, it is processed through the middleware and forwarded to the Apollo Server for execution.
+The result is sent back through the HTTP server to the client.
+Summary
+Even though GraphQL provides a more efficient and flexible way to interact with your data compared to traditional REST APIs, you still need an HTTP server to handle the 
+network communication, middleware, and routing of requests. The HTTP server acts as a bridge between the client's network requests and the GraphQL server's data processing capabilities.
+
+
+
+/////////////////// SESSION MANAGEMENT ///////////////////////////
+Express Setup:
+You set up an Express application to handle HTTP requests and routes.
+Integrate the express-session middleware to manage session creation and handling.
+
+MongoDB Store Integration:
+Use connect-mongodb-session to configure a MongoDB-backed session store.
+Session data from express-session is stored in the specified MongoDB collection.
+
+
+In-Memory Store: By default, express-session stores session data in memory. This is suitable for development and testing but not for production because it does not persist data across server restarts or scale well in distributed environments.
+MongoDBStore: Using connect-mongodb-session with express-session allows you to store session data in a MongoDB database. This provides persistence, meaning session data is saved even if the server restarts. It also enables scaling, as multiple instances of your application can share session data.
+
+
+/////////////////////////////////////     mongodb collection    ////////////////////////////////
+
+A MongoDB collection used to store session data as documents. The collection name is specified when configuring 
+connect-mongodb-session.
