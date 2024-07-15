@@ -38,7 +38,7 @@ delivery_guy
 
 
 frontend -> apollo client, react, tailwind css
-backend -> express, node, passport.js, passport(core), graphql-passport (nomal passport.js is for rest apis, pain to modify for graphql so using this), 
+backend -> graphql, mongoose, nodemon, express, bcrypt, passportjs, passport(core), graphql-passport (nomal passport.js is for rest apis, pain to modify for graphql so using this), 
 graphql-tools/merge (for merging varoius typedefs and resolvers), apollo-express-middleware, express-session (to store sessions in our app),
 connect-mongodb-session (to store sessions in mongodb)
 
