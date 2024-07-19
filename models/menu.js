@@ -8,6 +8,7 @@ const MenuSchema = new mongoose.Schema({
     price: Number, 
     veg_classifier: String,
     offers: [String],
+    bestseller: Boolean
 });
 
 const Menu = mongoose.model('Menu', MenuSchema);
