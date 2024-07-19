@@ -9,7 +9,7 @@ const orderResolvers = {
     },
 
     Mutation: {
-        addOrder: tryCatchHandler(async(_, orderDetails) => {
+        addOrder: tryCatchHandler(async(_, {orderDetails}) => {
             const order = new Order({
                 ...orderDetails
             })
@@ -18,7 +18,7 @@ const orderResolvers = {
             return order
         }),
         changeOrderStatus: tryCatchHandler(async(_, {orderId, orderStatus}) => {
-            const order = await Order.findOne({ orderId: mongoose.Types.ObjectId(orderId) })
+            const order = await Order.findOne({orderId})
             if (!order) throw new Error('order not found')
             order.status = orderStatus
             const updatedOrder = await order.save()
