@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
 const MenuSchema = new mongoose.Schema({
-    _id: String,
     restId: String,
     dishName: String,
     isAvailable: Boolean,

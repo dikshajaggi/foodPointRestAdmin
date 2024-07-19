@@ -9,6 +9,7 @@ const menuTypedef = `#graphql
         price: Float!
         veg_classifier: String!
         offers: [String!]!
+        bestseller: Boolean!
     }
 
     type Query {
@@ -31,6 +32,7 @@ const menuTypedef = `#graphql
         price: Float!
         veg_classifier: String!
         offers: [String!]!
+        bestseller: Boolean!
     }
 
     input UpdateDishInput {
@@ -41,6 +43,7 @@ const menuTypedef = `#graphql
         price: Float
         veg_classifier: String
         offers: [String!]
+        bestseller: Boolean
     }
 `
 

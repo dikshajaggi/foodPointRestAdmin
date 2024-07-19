@@ -1,10 +1,15 @@
 # apis ->
 
+flow ======================>
+
+# restaurant registeration--------> restaurant login (once registration has been approved) --------->
+# adding menu items -------> order status ---------> etc
+
 auth
     -> login/signup/logout
 
-restaurant
-    -> create restaurant (form)
+restaurant 
+    -> restaurant settings (form)
 
 menu
     -> edit restaurant menu (form)
@@ -65,3 +70,8 @@ xss-> if someone injects some script in our website and steal cookie, data etc.
         capture-entire-webpage
         phishing-attack (adding a form under the hood inside our webpage and get it filled by us)
 
+
+
+How_to_Implement_Promotional_offers_on_Backend?
+Cart Mutation: When items are added to the cart, the backend can automatically check if any promotional rules apply.
+Promotion Service: Create a service that checks the cart contents for eligible promotions and applies them.

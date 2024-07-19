@@ -6,8 +6,8 @@ const menuResolvers = {
             return await Menu.find()
         },
 
-        dish: (_, {dishId}) => {
-            return Menu.find(dish => dish._id === dishId)
+        dish: async (_, {dishId}) => {
+            return await Menu.find(dish => dish._id === dishId)
         }
     },
 
@@ -15,27 +15,26 @@ const menuResolvers = {
         addMenuItems: async (_, {menuInput}) => {
             const menuDish = new Menu({
                 ...menuInput,
-                _id : Math.floor(Math.random()*100)
             })
             await menuDish.save()
             return menuDish
         },
 
-        deleteMenuItems: (_, {dishId}) => {
-            const index = Menu.findIndex(dish => dish._id === dishId);
+        deleteMenuItems: async (_, {dishId}) => {
+            const index = await Menu.findIndex(dish => dish._id === dishId)
             if (index !== -1) {
-                const [deletedDish] = Menu.splice(index, 1);
-                return deletedDish;
+                const [deletedDish] = Menu.splice(index, 1)
+                return deletedDish
             }
-            return null;
+            return null
         },
-        updateMenuItems: (_, {dishId, updatedMenuItem}) => {
-            const index = Menu.findIndex(dish => dish._id === dishId);
+        updateMenuItems: async (_, {dishId, updatedMenuItem}) => {
+            const index = await Menu.findIndex(dish => dish._id === dishId)
             if (index !== -1) {
-                Menu[index] = { ...Menu[index], ...updatedMenuItem };
-                return Menu[index];
+                Menu[index] = { ...Menu[index], ...updatedMenuItem }
+                return Menu[index]
             }
-            return null;
+            return null
         },
         clearMenu: () => {
             Menu.length = 0
