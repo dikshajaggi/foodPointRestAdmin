@@ -11,6 +11,7 @@ const orderTypedef = `#graphql
         items: [cartItem!]!
         totalPrice: Float!
         status: String!
+        date: String!
     }
 
     type Query {

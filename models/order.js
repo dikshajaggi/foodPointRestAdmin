@@ -17,7 +17,8 @@ const OrderSchema = new mongoose.Schema({
         type: String,
         enum: ['Pending', 'Confirmed', 'Preparing', 'Out for Delivery', 'Delivered', 'Cancelled'],
         default: 'Pending'
-    }
+    },
+    date: { type: String }
 })
     // used enum to make sure that any other status is not used except these given statuses
 
