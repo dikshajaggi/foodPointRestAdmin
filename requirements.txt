@@ -10,6 +10,10 @@ auth
 
 restaurant 
     -> restaurant settings (form)
+    # add working days / opening closing time
+    # btn to make restaurant online/ offline
+    # restaurant location (multiple outlets)
+    # type of menu (veg/ veg & non-veg)
 
 menu
     -> edit restaurant menu (form)

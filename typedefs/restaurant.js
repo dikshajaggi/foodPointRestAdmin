@@ -6,7 +6,7 @@ const restaurantTypedef = `#graphql
         priceForTwo: Float!
         deliveryTime: Int!
         deliveryCharge: Float!
-        deals: [String!]!
+        deals: String!
         contact: [Int!]!
         outlets: [String!]!
         ownerId: [String!]!
