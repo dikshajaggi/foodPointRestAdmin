@@ -6,14 +6,18 @@ const restaurantTypedef = `#graphql
         priceForTwo: Float!
         deliveryTime: Int!
         deliveryCharge: Float!
-        deals: String!
         contact: [Int!]!
         outlets: [String!]!
         ownerId: [String!]!
+            # pics of aadhar card/ gst etc.
         password: String!
         username: String!
         email: String!
-        # pics of aadhar card/ gst etc.
+        online: Boolean!
+        working_days: [String!]!
+        opening_time: String!
+        closing_time: String!
+        menu_type: String!
     }
 
     type Query {
@@ -34,13 +38,17 @@ const restaurantTypedef = `#graphql
         priceForTwo: Float!
         deliveryTime: Int!
         deliveryCharge: Float!
-        deals: [String!]
         contact: [Int!]!
         outlets: [String!]!
         ownerId: [String!]!
         password: String!
         username: String!
         email: String!
+        online: Boolean!
+        working_days: [String!]!
+        opening_time: String!
+        closing_time: String!
+        menu_type: String!
     }
 
     input UpdatedDetailsInput {
@@ -49,7 +57,12 @@ const restaurantTypedef = `#graphql
         priceForTwo: Float
         deliveryTime: Int
         deliveryCharge: Float
-        deals: [String!]
+        online: Boolean!
+        working_days: [String!]
+        opening_time: String
+        closing_time: String
+        outlets: [String!]
+        menu_type: String
     }
 `
 export default restaurantTypedef

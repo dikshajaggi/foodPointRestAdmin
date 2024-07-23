@@ -8,10 +8,17 @@ const RestaurantSchema = new mongoose.Schema({
     priceForTwo: Number,
     deliveryTime: Number,
     deliveryCharge: Number,
-    deals: [String],
     contact: [Number],
     outlets: [String],
-    ownerId: [String]
+    ownerId: [String],
+    password: String,
+    username: String,
+    email: String,
+    online: Boolean,
+    working_days: [String],
+    opening_time: String,
+    closing_time: String,
+    menu_type: String
 })
 
 const Restaurant = mongoose.model('Restaurant', RestaurantSchema)

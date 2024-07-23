@@ -6,43 +6,49 @@ flow ======================>
 # adding menu items -------> order status ---------> etc
 
 auth
-    -> login/signup/logout
+    # -> login/signup/logout
 
 restaurant 
-    -> restaurant settings (form)
-    # add working days / opening closing time
-    # btn to make restaurant online/ offline
-    # restaurant location (multiple outlets)
-    # type of menu (veg/ veg & non-veg)
+    # -> restaurant settings (form)
+    # -> add working days / opening closing time
+    # -> btn to make restaurant online/ offline
+    # -> restaurant location (multiple outlets)
+    # -> type of menu (veg/ veg & non-veg)
 
 menu
-    -> edit restaurant menu (form)
-    -> add new item (menu)
-    -> delete item (menu)
+    # -> edit restaurant menu (form)
+    # -> add new item (menu)
+    # -> delete item (menu)
 
 sales
-    -> todays
-    -> weekly
-    -> monthly
-    -> yearly
+    # -> todays
+    # -> this week
+    # -> this month
+    # -> this year
+    # -> date picker
 
 order_status
-    -> all orders recieved
-    -> confirmed 
-    -> cancelled
-    -> preparing
-    -> out for delivery
-    -> delivered
+    # -> all orders recieved
+    # -> confirmed 
+    # -> cancelled
+    # -> preparing
+    # -> out for delivery
+    # -> delivered
 
 offers 
-    -> all offers
-    -> new offers
-    -> delete offers
-    -> update offers 
-    -> expired offers
+    # -> all offers
+    # -> new offers
+        -> buy one get one (open & expired)
+        -> percentage discounts (open & expired)
+        -> day offers (open & expired)
+        -> free items on order above rs.
+        -> free delivery on order above rs.
+    # -> delete offers
+    # -> update offers 
+    # -> expired offers
 
 delivery_guy
-    -> details
+    # -> details
 
 
 
