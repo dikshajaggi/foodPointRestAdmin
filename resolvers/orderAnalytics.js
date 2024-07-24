@@ -1,6 +1,7 @@
 import moment from "moment";
 import tryCatchHandler from "../utils/tryCatch.js";
 import fetchOrders from "../utils/fetchOrders.js";
+import Order from "../models/order.js";
 
 const orderAnalyticsResolver = {
   Query: {
@@ -61,12 +62,48 @@ const orderAnalyticsResolver = {
         return orders.reduce((totalPrice, order) => order.totalPrice + totalPrice, 0);
       }),
 
-    pendingOrdersCount: tryCatchHandler(async() => {}),
-    confirmedOrdersCount: tryCatchHandler(async() => {}),
-    preparingOrdersCount: tryCatchHandler(async() => {}),
-    OutforDeliveryOrdersCount: tryCatchHandler(async() => {}),
-    deliveredOrdersCount: tryCatchHandler(async() => {}),
-    cancelledOrdersCount: tryCatchHandler(async() => {})
+    pendingOrdersCount: tryCatchHandler(async() => {
+      const result = await Order.aggregate([
+        { $match: { status: "Pending" } },
+        { $count: "pendingOrders" }
+      ]);
+    return result.length > 0 ? result[0].pendingOrders : 0
+    }),
+    confirmedOrdersCount: tryCatchHandler(async() => {
+        const result = await Order.aggregate([
+            { $match: { status: "Confirmed" } },
+            { $count: "confirmedOrders" }
+          ]);
+        return result.length > 0 ? result[0].confirmedOrders : 0
+    }),
+    preparingOrdersCount: tryCatchHandler(async() => {
+      const result = await Order.aggregate([
+        { $match: { status: "Preparing" } },
+        { $count: "preparingOrders" }
+      ]);
+    return result.length > 0 ? result[0].preparingOrders : 0
+    }),
+    OutforDeliveryOrdersCount: tryCatchHandler(async() => {
+      const result = await Order.aggregate([
+        { $match: { status: "Out for Delivery" } },
+        { $count: "outForDeliveryOrders" }
+      ]);
+    return result.length > 0 ? result[0].outForDeliveryOrders : 0
+    }),
+    deliveredOrdersCount: tryCatchHandler(async() => {
+      const result = await Order.aggregate([
+        { $match: { status: "Delivered" } },
+        { $count: "deliveredOrders" }
+      ]);
+    return result.length > 0 ? result[0].deliveredOrders : 0
+    }),
+    cancelledOrdersCount: tryCatchHandler(async() => {
+      const result = await Order.aggregate([
+        { $match: { status: "Cancelled" } },
+        { $count: "cancelledOrders" }
+      ]);
+    return result.length > 0 ? result[0].cancelledOrders : 0
+    })
   }
 };
 
