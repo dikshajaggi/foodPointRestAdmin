@@ -56,6 +56,7 @@ const offersTypedef = `#graphql
         createOffer(offer: inputOffer): Offer!
         updateOffer(offerID: String!, updatedOffer: inputUpdatedOffer): Offer!
         deleteOffer(offerID: String!): Offer!
+        clearAllOffers: [RestaurantMenu!]!
     }
 
     input inputOffer {

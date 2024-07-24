@@ -32,6 +32,10 @@ const OffersResolver = {
                     return deletedOffer
                 }
                return null
+            }),
+            clearAllOffers: tryCatchHandler(async() => {
+                Offer.length = 0
+                return []
             })
         }
 }
