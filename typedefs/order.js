@@ -16,6 +16,11 @@ const orderTypedef = `#graphql
 
     type Query {
         allOrders: [Order!]!
+        
+        # analytics
+        todaysOrders: [Order!]!
+        thisWeekOrders: [Order!]!
+        thisMonthOrders: [Order!]!
     }
 
     type Mutation {
