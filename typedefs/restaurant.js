@@ -19,7 +19,6 @@ const restaurantTypedef = `#graphql
         closing_time: String!
         menu_type: String!
     }
-
     type Query {
         showDetails: Restaurant!
     }
@@ -28,6 +27,7 @@ const restaurantTypedef = `#graphql
         loginRest(email: String! password: String!): Restaurant!
         registerRest(registerDetails: registrationDetailsInput!): Restaurant!
         updateRest(restId: ID!, updateDetails: UpdatedDetailsInput!) : Restaurant!
+        updateRestActivity(restId: ID!, updatedStatus: Boolean!) : Restaurant!
         # update rest is for restaurant settings
     }
 

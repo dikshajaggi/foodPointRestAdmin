@@ -1,14 +1,14 @@
 import mongoose from "mongoose";
 
 const MenuSchema = new mongoose.Schema({
-    restId: String,
-    dishName: String,
-    isAvailable: Boolean,
-    image: String,
-    price: Number, 
-    veg_classifier: String,
+    restId: {type: String, required : true},
+    dishName: {type: String, required : true},
+    isAvailable:  {type: Boolean, required : true},
+    image: {type: String, required : true},
+    price: {type: Number, required : true},
+    veg_classifier: {type: String, required : true},
     offers: [String],
-    bestseller: Boolean
+    bestseller: {type: Boolean, required : true}
 });
 
 const Menu = mongoose.model('Menu', MenuSchema);

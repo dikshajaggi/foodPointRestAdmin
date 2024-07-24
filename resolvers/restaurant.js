@@ -30,6 +30,15 @@ const RestaurantResolver = {
             }
             Object.assign(rest, updateDetails)
             return rest
+        }),
+        updateRestActivity: tryCatchHandler(async(_, {restId, updatedStatus}) => {
+            let rest = Restaurant.findOne({restId})
+            if (!rest) {
+                throw new Error('Restaurant not found')
+            }
+            rest.online = updatedStatus
+            await rest.save()
+            return rest
         })
     }
 
