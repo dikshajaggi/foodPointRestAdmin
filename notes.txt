@@ -62,3 +62,19 @@ MongoDBStore: Using connect-mongodb-session with express-session allows you to s
 
 A MongoDB collection used to store session data as documents. The collection name is specified when configuring 
 connect-mongodb-session.
+
+------------------------------------------------------------------------------------------------
+
+mongo db aggregate pipeline ---> good for admin panels
+
+this can be used to get the order status count
+[
+  {
+    $match: {
+       status: "Confirmed"
+    }
+  },
+  {
+    $count: "confirmedOrders"
+  }
+]
