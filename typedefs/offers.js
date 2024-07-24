@@ -54,6 +54,8 @@ const offersTypedef = `#graphql
 
     type Mutation {
         createOffer(offer: inputOffer): Offer!
+        updateOffer(offerID: String!, updatedOffer: inputUpdatedOffer): Offer!
+        deleteOffer(offerID: String!): Offer!
     }
 
     input inputOffer {
@@ -64,6 +66,19 @@ const offersTypedef = `#graphql
         applicable_payment_methods: applicable_payment_methods_input
         status: OfferStatus!
         bogo: Boolean!
+        free_item: free_item_input
+        discount_percent: Float
+        free_delivery: free_delivery_input
+    }
+
+    input inputUpdatedOffer {
+        type: OfferType,
+        start_date: String
+        end_date: String
+        applicable_days: applicable_days_input
+        applicable_payment_methods: applicable_payment_methods_input
+        status: OfferStatus
+        bogo: Boolean
         free_item: free_item_input
         discount_percent: Float
         free_delivery: free_delivery_input
