@@ -3,10 +3,14 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import mergedTypedefs from "./typedefs/index.js";
 import mergedResolvers from "./resolvers/index.js";
 import connectDB from "./db.js";
+import DateScalar from "./utils/DateScalar.js";
 
 const server = new ApolloServer({
     typeDefs: mergedTypedefs,
-    resolvers: mergedResolvers
+    resolvers: {
+        ...mergedResolvers,
+        Date: DateScalar,
+    }
 })
 
 async function startServer() {

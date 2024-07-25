@@ -78,3 +78,164 @@ this can be used to get the order status count
     $count: "confirmedOrders"
   }
 ]
+
+each order will be considered as a speicifc document
+so if we want to find out the average price of all the orders place then we need to group all the documents into one 
+using the group we can find the avg as earlier the documents were separate, we need to make a single group
+to do this we don't want to group it on the basis of any specifc field
+so we can use "null" as a param and group all the documents together
+
+[
+  {
+    $group: {
+      _id: null,
+      avgPrice {
+        $avg: "totalPrice"
+      }
+    }
+  }
+]
+
+
+using group we can get the number of veg/non-veg orders
+or group the orders based different cuisines
+
+[
+  {
+    $group: {
+      _id: "$status"
+    }
+  }
+]
+
+
+to group the items based on a param that is present in nested format, like array of objects like a object
+first flatten the array of objects using unwind
+
+[
+  {
+    $unwind: "$items"
+  },
+  {
+    $group: {
+      _id: "$items.name"
+    }
+  }
+]
+
+
+or simple do this
+[
+  {
+    $group: {
+      _id: "$items.name",
+    	count: {
+      	$sum: 1
+  		},
+    }
+  }
+]
+
+---------------------------------------------------------------------------------------------------------
+to count the items based on name
+
+[
+  {
+    $unwind: "$items"
+  },
+  {
+    $group: {
+      _id: "$items.name",
+      count: {
+        $sum: 1 (add one as soon as you see samosa, or add one as soon as you see pav bhaji)
+      }
+    },
+  },
+]
+
+---------------------------------------------------------------------------------------------------------
+find the top5 best selling food items (we will use sorting)[
+  {
+    $unwind: "$items"
+  },
+  {
+    $group: {
+      _id: "$items.name",
+      count: {
+        $sum: 1
+      }
+    },
+  },
+  {
+    $sort: {
+      count: -1 (this stage is based on the result of its prev stage, so in the prev stage we had count, that is why we can sort on the basis of this field)
+    }
+  }
+]
+
+
+count -1 means descending order -> highest on top (for best selling)
+for least selling we can do sorting in ascending order count 1
+
+
+and to find limited result like bestselling 5, least selling 5 
+we can use the following after sort
+
+{
+  $limit : 5
+}
+
+------------------------------------------------------------------------------------
+
+to find avg number of items per order
+unwind is required here because:
+we need to count the length of items array, and for this by unwinding we are creating separate documents of the same order but each will have a different items
+if an order has 2 items, then 2 separate docs will be created one with item1 and other with item2
+
+then we will create groups of each order and then count the items in each group
+
+then we will create one group of all the these groups and calculate the avg
+
+[
+  {$unwind: "$items"},
+  {
+    $group: {
+      _id: "$orderId",
+    	countOfItemsperOrder: {
+      	$sum: 1
+  		},
+    }
+  },
+  {
+    $group: {
+      _id: null,
+      avg: {
+        $avg: "$countOfOrdersperUser"
+    	}
+    }
+  }
+]
+
+
+
+
+[
+  {
+    $addFields: {
+      twoDaysAgo: {
+        $dateSubtract: {
+          startDate: "$$NOW",
+          unit: "day",
+          amount: 50
+        }
+      }
+    }
+  },
+  {
+    $project: {
+      twoDaysAgo: 1,
+      date: 1,
+      items: 1
+    }
+  }
+]

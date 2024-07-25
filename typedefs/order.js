@@ -1,4 +1,6 @@
 const orderTypedef = `#graphql
+    scalar Date
+
     type cartItem {
         name: String!
         price: Float!
@@ -11,7 +13,7 @@ const orderTypedef = `#graphql
         items: [cartItem!]!
         totalPrice: Float!
         status: String!
-        date: String!
+        date: Date!
     }
 
     type Query {

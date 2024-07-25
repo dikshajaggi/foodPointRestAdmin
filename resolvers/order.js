@@ -79,10 +79,10 @@ const orderResolvers = {
 
   Mutation: {
     addOrder: tryCatchHandler(async (_, { orderDetails }) => {
-      const date = new Date();
+      const date = "2024-06-12T14:59:13Z" ; // Create a Date object in ISO format
       const order = new Order({
         ...orderDetails,
-        date: date.toLocaleString('en-US', options)
+        date: date // Store the Date object directly
       });
       await order.save();
       return order;
